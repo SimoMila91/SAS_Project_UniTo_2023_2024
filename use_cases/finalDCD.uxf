@@ -1,0 +1,950 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>5</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>495</x>
+      <y>10</y>
+      <w>170</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>halign=center
+*Design Class Diagram (DCD)*
+lw=0
+fontsize=20
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>890</x>
+      <y>225</y>
+      <w>155</w>
+      <h>225</h>
+    </coordinates>
+    <panel_attributes>UserManagement
+fg=gray
+lw=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>130</x>
+      <y>355</y>
+      <w>645</w>
+      <h>390</h>
+    </coordinates>
+    <panel_attributes>KitchenTaskManagement
+lw=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>780</x>
+      <y>55</y>
+      <w>445</w>
+      <h>165</h>
+    </coordinates>
+    <panel_attributes>RecipeManagement
+fg=gray
+lw=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>325</x>
+      <y>90</y>
+      <w>175</w>
+      <h>145</h>
+    </coordinates>
+    <panel_attributes>MenuManager
+--
+-menuFeatures: String[]
+--
+*event sender methods*
++addReceiver(er: MenuEventReceiver)
++removeReceiver(er: MenuEventReceiver)
+-notifySectionAdded(sec: Section)
+-notifyMenuItemAdded(mi: MenuItem)
+-notifyMenuCreated(m: Menu)
+-notifyMenuDeleted(m: Menu)
+-notifySectionsRearranged(m: Menu)
+
+--
+*operations methods*
++defineSection(name: String)
++inserItem(r: Recipe, sec?: Section, desc?: String)
++createMenu(title: String): Menu
++getRecipeBook( ): ArrayList&lt;Recipe&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>555</x>
+      <y>85</y>
+      <w>165</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>Menu
+--
+-title: String
+-published: boolean
+-inUse: boolean
+-features:HashMap&lt;String,boolean&gt;
+--
++create(owner: User, title: String, features: String[])
++addSection(name: String)
++addItem(r: Recipe, sec?: Section,
+                                        desc?: String)
++isOwner(user: User): boolean
++isInUse(): boolean
++hasSection(sec: Section): boolean
++sectionsSize(): int
++moveSection(sec: Section, pos: int)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>495</x>
+      <y>160</y>
+      <w>70</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+currentMenu
+m1=0..1</panel_attributes>
+    <additional_attributes>120.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>635</x>
+      <y>290</y>
+      <w>130</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>MenuItem
+--
+-description: String
+--
++create(rec: Recipe, desc?: String)
++create(mi: MenuItem)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>935</x>
+      <y>75</y>
+      <w>90</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Recipe
+fg=gray
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>730</x>
+      <y>15</y>
+      <w>215</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+itemRecipe</panel_attributes>
+    <additional_attributes>410.0;140.0;360.0;140.0;360.0;10.0;10.0;10.0;10.0;550.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>650</x>
+      <y>210</y>
+      <w>45</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n
+freeItems</panel_attributes>
+    <additional_attributes>10.0;160.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>525</x>
+      <y>250</y>
+      <w>105</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Section
+--
+-name: String
+--
++create(name: String)
++create(sec: Section)
++addItem(mi: MenuItem)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>540</x>
+      <y>200</y>
+      <w>40</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n
+sections</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0;30.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>540</x>
+      <y>305</y>
+      <w>105</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n
+sectionItems</panel_attributes>
+    <additional_attributes>190.0;50.0;10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1065</x>
+      <y>255</y>
+      <w>110</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>UseCaseLogicException
+--
+fg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1230</x>
+      <y>255</y>
+      <w>65</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>Exception
+--
+
+fg=magenta
+fg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1170</x>
+      <y>270</y>
+      <w>70</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=gray</panel_attributes>
+    <additional_attributes>120.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>320</x>
+      <y>265</y>
+      <w>195</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>MenuEventReceiver
+{interface}
+--
+
+--
+/+updateSectionAdded(m: Menu, sec: Section)/
+/+updateMenuItemAdded(m: Menu, mi: MenuItem)/
+/+updateMenuCreated(m: Menu)/
+/+updateMenuDeleted(m: Menu)/
+/+updateSectionsRearranged(m: Menu)/
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>295</x>
+      <y>210</y>
+      <w>60</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+eventReceivers
+m1=0..n</panel_attributes>
+    <additional_attributes>50.0;160.0;10.0;160.0;10.0;10.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1055</x>
+      <y>235</y>
+      <w>370</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>Utils
+fg=gray
+lw=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>900</x>
+      <y>340</y>
+      <w>130</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>UserManager
+--
+
+--
+*event sender methods*
+
+
+--
+*operations methods*
++getCurrentUser(): User
+fg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>920</x>
+      <y>245</y>
+      <w>75</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>User
+
+--
+
+--
++isChef( ): boolean
+
+fg=gray
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>955</x>
+      <y>295</y>
+      <w>50</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+currentUser
+m1=0..1
+fg=gray</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>210</y>
+      <w>230</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+owner
+m1=1</panel_attributes>
+    <additional_attributes>440.0;110.0;10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>785</x>
+      <y>75</y>
+      <w>95</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>RecipeManager
+--
+
+--
++getRecipeBook(): 
+	ArrayList&lt;Recipe&gt;
+
+fg=gray
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>875</x>
+      <y>95</y>
+      <w>70</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m2=0..n
+recipes
+fg=gray</panel_attributes>
+    <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>280</x>
+      <y>70</y>
+      <w>495</w>
+      <h>275</h>
+    </coordinates>
+    <panel_attributes>MenuManagement
+lw=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>525</x>
+      <y>370</y>
+      <w>245</w>
+      <h>115</h>
+    </coordinates>
+    <panel_attributes>SummarySheet
+--
+-title: String
+
+
+--
++create(e: Event, s: Service, title?: String)
++addTask(duty: KitchenDuty)
++addExtraTask(task: KitchenDuty, completed: boolean)
++orderKitchenTask(task: KitchenTask, pos: Integer) 
++assignKitchenTask(task: KitchenTask, shift?: CookShit, cook?: User, 
+qty?: Integer, completed?: boolean)
++modifyKitchenTask(task: KitchenTask, shift?: CookShift, cook?: User, 
+qty?: Integer, completed?: boolean)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1085</x>
+      <y>95</y>
+      <w>115</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>KitchenDuty
+{abstract}
+fg=gray
+--
+-name: String 
+-author: String 
+-instructions: String 
+-quantity: Double
+-tags: ArrayList&lt;String&gt;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>935</x>
+      <y>165</y>
+      <w>90</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Preparation
+fg=gray
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1045</x>
+      <y>135</y>
+      <w>50</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=gray</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1020</x>
+      <y>90</y>
+      <w>40</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=-
+fg=gray</panel_attributes>
+    <additional_attributes>10.0;200.0;60.0;200.0;60.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>140</x>
+      <y>370</y>
+      <w>325</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>KitchenTaskManager
+--
+*event sender methods*
+-notifySummarySheetCreated(ss: SummarySheet) 
+-notifyNewTaskAdded(kt: KitchenTask)
+-notifyTaskOrdered(ss: SummarySheet)
+-notifyAssignedTask(ss: SummarySheet, kt: KitchenTask)
+
+--
+*operations methods*
++createSummarySheet(event: Event, service: Service, title?: String): SummarySheet 
++openSummarySheet(ss: SummarySheet): SummarySheet
++setCurrentSheet(ss: SummarySheet)
++addTask(task: KitchenDuty, completed: boolean)
++orderTask(task: KitchenTask, pos: Integer)
++assignTask(task: KitchenTask, shift?: CookShit, cook?: User, qty?: Integer, completed?: boolean)
++modifyTask(task: KitchenTask, shift?: CookShift, cook?: User, qty?: Integer, completed?: boolean)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>460</x>
+      <y>390</y>
+      <w>75</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+currentSheet
+m1=0..1</panel_attributes>
+    <additional_attributes>130.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>890</x>
+      <y>455</y>
+      <w>300</w>
+      <h>245</h>
+    </coordinates>
+    <panel_attributes>EventManagement
+fg=gray
+lw=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>895</x>
+      <y>475</y>
+      <w>110</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>EventManager
+--
+fg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1000</x>
+      <y>495</y>
+      <w>70</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+currentEvent
+m1=0..1
+fg=gray</panel_attributes>
+    <additional_attributes>120.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1060</x>
+      <y>475</y>
+      <w>110</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>Event
+--
+fg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>940</x>
+      <y>550</y>
+      <w>140</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Service
+--
+
+--
++getMenu(): Menu
++getNeededRecipes(): KitchenDuty
+fg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1075</x>
+      <y>525</y>
+      <w>80</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=gray
+services
+m1=0..n</panel_attributes>
+    <additional_attributes>10.0;110.0;90.0;110.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>745</x>
+      <y>480</y>
+      <w>205</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+service
+m1=1</panel_attributes>
+    <additional_attributes>390.0;190.0;10.0;190.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>650</x>
+      <y>0</y>
+      <w>710</w>
+      <h>610</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=gray
+menu</panel_attributes>
+    <additional_attributes>10.0;170.0;10.0;120.0;110.0;120.0;110.0;10.0;1370.0;10.0;1370.0;1200.0;860.0;1200.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>665</x>
+      <y>480</y>
+      <w>30</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+tasks
+m1=0..n</panel_attributes>
+    <additional_attributes>10.0;220.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>580</x>
+      <y>590</y>
+      <w>185</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>KitchenTask
+--
+-completed: boolean 
+-quantity: Integer 
+-base: boolean
+
+
+
+--
++create(kitchenDuty: KitchenDuty)
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>975</x>
+      <y>115</y>
+      <w>55</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=gray
+preparations
+m1= 0..n
+</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>760</x>
+      <y>280</y>
+      <w>170</w>
+      <h>340</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+cook
+m1=0..1</panel_attributes>
+    <additional_attributes>320.0;10.0;210.0;10.0;210.0;660.0;10.0;660.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>760</x>
+      <y>145</y>
+      <w>735</w>
+      <h>600</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+duty
+m1=1</panel_attributes>
+    <additional_attributes>880.0;10.0;1430.0;10.0;1430.0;1180.0;90.0;1180.0;90.0;970.0;10.0;970.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>140</x>
+      <y>595</y>
+      <w>270</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>KitchenTaskReceiver
+{interface}
+--
+
+
+--
+/+updateSummarySheetCreated(s: SummarySheet)/
+/+updateNewTaskAdded(kt: KitchenTask)/
+/+updateTaskOrdered(ss: SummarySheet)/
+/+updateAssignedTask(ss: SummarySheet, kt: KitchenTask)
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>265</x>
+      <y>505</y>
+      <w>60</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+eventReceivers
+m1=0..n</panel_attributes>
+    <additional_attributes>10.0;180.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>240</x>
+      <y>760</y>
+      <w>660</w>
+      <h>390</h>
+    </coordinates>
+    <panel_attributes>ShiftManagement 
+lw=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>265</x>
+      <y>795</y>
+      <w>270</w>
+      <h>115</h>
+    </coordinates>
+    <panel_attributes>ShiftTableManager
+--
+*event sender methods*
+
+
+--
+*operations methods*
++checkShiftTable()
++checkKitchenShifts()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>680</x>
+      <y>805</y>
+      <w>180</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>ShiftTable
+--
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>530</x>
+      <y>830</y>
+      <w>160</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+shiftTable
+m1=0..1</panel_attributes>
+    <additional_attributes>300.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>265</x>
+      <y>975</y>
+      <w>170</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>Shift
+{abstract}
+--
+-shiftDate: Date
+-startHour: Time 
+-endHour: Time 
+-place: String 
+-blocked: boolean 
+
+--
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>640</x>
+      <y>870</y>
+      <w>150</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+serviceShifts
+m1=0..n</panel_attributes>
+    <additional_attributes>10.0;230.0;200.0;230.0;200.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>505</x>
+      <y>955</y>
+      <w>140</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>ServiceShift
+--
+
+
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>505</x>
+      <y>1050</y>
+      <w>140</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>KitchenShift
+--
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>640</x>
+      <y>870</y>
+      <w>215</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+kitchenShifts
+m1=0..n</panel_attributes>
+    <additional_attributes>10.0;430.0;330.0;430.0;330.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>430</x>
+      <y>980</y>
+      <w>85</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+extends
+m1=0..1</panel_attributes>
+    <additional_attributes>10.0;90.0;80.0;90.0;80.0;10.0;150.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>430</x>
+      <y>1030</y>
+      <w>85</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+extends
+m1=0..1</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0;80.0;100.0;150.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>565</x>
+      <y>705</y>
+      <w>425</w>
+      <h>435</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+shift
+m1=0..1</panel_attributes>
+    <additional_attributes>10.0;800.0;10.0;850.0;810.0;850.0;810.0;100.0;210.0;100.0;210.0;10.0</additional_attributes>
+  </element>
+</diagram>
