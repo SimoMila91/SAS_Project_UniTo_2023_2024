@@ -12,37 +12,28 @@ public class Recipe extends KitchenDuty {
     private static Map<Integer, Recipe> all = new HashMap<>();
 
     private int id;
-    private String name;
 
     private Recipe() {
-
+        super();
     }
 
     public Recipe(String name, String author, String instructions, Double quantity, Duration activityTime,
-            ArrayList<String> tags, int id, String name2) {
+            ArrayList<String> tags, int id) {
         super(name, author, instructions, quantity, activityTime, tags);
         this.id = id;
-        name = name2;
     }
 
     public Recipe(String name, int id, String name2) {
         super(name);
         this.id = id;
-        name = name2;
     }
 
     public Recipe(int id, String name) {
         this.id = id;
-        this.name = name;
     }
 
     public Recipe(String name) {
         id = 0;
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public int getId() {
@@ -50,7 +41,7 @@ public class Recipe extends KitchenDuty {
     }
 
     public String toString() {
-        return name;
+        return this.getName();
     }
 
     // STATIC METHODS FOR PERSISTENCE
@@ -62,8 +53,8 @@ public class Recipe extends KitchenDuty {
             public void handle(ResultSet rs) throws SQLException {
                 int id = rs.getInt("id");
                 if (all.containsKey(id)) {
-                    Recipe rec = all.get(id);
-                    rec.name = rs.getString("name");
+                    Recipe rec = new Recipe();
+                    rec.setName(rs.getString("name"));
                 } else {
                     Recipe rec = new Recipe(rs.getString("name"));
                     rec.id = id;
@@ -93,7 +84,8 @@ public class Recipe extends KitchenDuty {
         PersistenceManager.executeQuery(query, new ResultHandler() {
             @Override
             public void handle(ResultSet rs) throws SQLException {
-                rec.name = rs.getString("name");
+
+                rec.setName(rs.getString("name"));
                 rec.id = id;
                 all.put(rec.id, rec);
             }
